@@ -97,3 +97,20 @@ let g:UltiSnipsEditSplit="vertical"
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
+
+"Dislpay all matching files when tab complete
+set wildmenu
+
+"Create tags file for tag jumping
+command! MakeTags !ctags -R . 
+
+"File Browsing
+let g:netrw_banner = 0
+let g:netrw_browse_split=4
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(q\|\s\s\)\zs\.\S\+'
+
+"Add NerdTree
+autocmd vimenter * NERDTree
