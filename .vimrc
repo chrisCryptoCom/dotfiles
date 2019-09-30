@@ -45,9 +45,9 @@ syntax enable
 let mapleader = ","
 
 "Slimux shortcuts
-map <Leader>s :SlimuxREPLSendLine<CR>
-vmap <Leader>s :SlimuxREPLSendSelection<CR>
-map <Leader>b :SlimuxREPLSendBuffer<CR>
+map <Leader>l :SlimuxREPLSendLine<CR>
+vmap <Leader>l :SlimuxREPLSendSelection<CR>
+map <Leader>f :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
 map <Leader>k :SlimuxSendKeysLast<CR>
 
@@ -66,7 +66,7 @@ set pastetoggle=<F2>
 set clipboard=unnamedplus
 
 "Enable Mouse
-set mouse=a
+" set mouse=a
 set bs=2
 
 
@@ -116,7 +116,7 @@ let g:netrw_list_hide.=',\(q\|\s\s\)\zs\.\S\+'
 autocmd vimenter * NERDTree
 "Show hidden files in NERDTree
 let NERDTreeShowHidden=1
-
+nmap <F3> :NERDTreeToggle<CR>
 
 " Martin Brochhaus https://www.youtube.com/watch?v=YhqsjUUHj6g
 " Bind nohl
@@ -208,10 +208,13 @@ set wildignore+=*/coverage/*
 " Settings for jedi-vim
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
+let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#usages_command = "<leader>z"
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+let g:jedi#show_call_signatures = 0
+map <Leader>b Oimport pdb; pdb.set_trace()<C-c>
+map <Leader>B :g/import pdb; pdb.set_trace()/d<CR>
 
 " Better navigating through omnicomplete option list
 " See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
@@ -234,4 +237,26 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " Python folding
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+set foldenable              " can slow Vim down with some plugins
+set foldlevelstart=99       " can slow Vim down with some plugins
+set foldmethod=syntax       " can slow Vim down with some plugins
+
+"Toggle Tagbar
+nmap <F8> :TagbarToggle<CR>
+
+"Enable relative numbering
+set relativenumber
+
+"Insert mode very slow
+set noswapfile
+
+"Enter empty lines in normal mode with enter
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+
+"Remap incrementing
+nmap <C-c> <C-a>
+
+"Switch off octal numbers"
+set nrformats-=octal 
+    
