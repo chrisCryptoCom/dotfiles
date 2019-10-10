@@ -370,3 +370,5 @@ nmap <C-c> <C-a>
 "Switch off octal numbers"
 set nrformats-=octal 
 
+"Shortcut to copy filename
+noremap <silent> <F4> :let @+=expand("%:p")<CR>
