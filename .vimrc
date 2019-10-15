@@ -40,8 +40,11 @@ Plugin 'epeli/slimux'
 "Nerdtree Filebrowser
 Plugin 'scrooloose/nerdtree'
 
-"Nerdtree Filebrowser
+" Jedi-Vim tags autocomplete etc. for python
 Plugin 'davidhalter/jedi-vim'
+
+" Change Filname from within
+Plugin 'danro/rename.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
