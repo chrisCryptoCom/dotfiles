@@ -104,15 +104,6 @@ noremap <C-Q> :quit<CR>
 "Keep Clipboard on exit
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
@@ -124,16 +115,6 @@ set wildmenu
 "Create tags file for tag jumping
 command! MakeTags !ctags -R . 
 
-"File Browsing
-let g:netrw_banner = 0
-let g:netrw_browse_split=4
-let g:netrw_altv=1
-let g:netrw_liststyle=3
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(q\|\s\s\)\zs\.\S\+'
-
-"Add NerdTree
-autocmd vimenter * NERDTree
 "Show hidden files in NERDTree
 let NERDTreeShowHidden=1
 nmap <F3> :NERDTreeToggle<CR>
@@ -163,8 +144,8 @@ map <c-h> <c-w>h
 " easier moving between tabs
 nnoremap tn :tabnew<Space>
 
-nnoremap tk :tabnext<CR>
-nnoremap tj :tabprev<CR>
+nnoremap <tab> :tabnext<CR>
+nnoremap <s-tab> :tabprev<CR>
 
 nnoremap th :tabfirst<CR>
 nnoremap tl :tablast<CR>
@@ -285,6 +266,7 @@ map <Leader>u :py3 import uuid <CR>:%s/UUID/\=py3eval('str(uuid.uuid4())')/<CR>
 
 "Shortcut to copy filename
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
-
-"Shortcut to change conda env
-" map <F4> :CondaChangeEnv<CR>
+" Redo with U instead of Ctrl+R
+noremap U <C-R>
+" Open grep results / quickfix in new tab
+set switchbuf+=usetab,newtab
