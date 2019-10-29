@@ -19,6 +19,9 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
+" Seamless navigation with tmux
+Plugin 'christoomey/vim-tmux-navigator'
+
 "Custom Operators
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -46,6 +49,12 @@ Plugin 'davidhalter/jedi-vim'
 " Change Filname from within
 Plugin 'danro/rename.vim'
 
+" Filetype Plugin for csv files
+Plugin 'chrisbra/csv.vim'
+
+" Syntax Checking
+Plugin 'vim-syntastic/syntastic'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -69,7 +78,6 @@ syntax enable
 let mapleader = ","
 
 "Slimux shortcuts
-map <Leader>l :SlimuxREPLSendLine<CR>
 vmap <Leader>l :SlimuxREPLSendSelection<CR>
 map <Leader>f :SlimuxREPLSendBuffer<CR>
 map <Leader>a :SlimuxShellLast<CR>
@@ -148,7 +156,7 @@ map <c-h> <c-w>h
 " easier moving between tabs
 nnoremap tn :tabnew<Space>
 
-nnoremap <tab> :tabnext<CR>
+nnoremap <Leader><tab> :tabnext<CR>
 nnoremap <s-tab> :tabprev<CR>
 
 nnoremap th :tabfirst<CR>
@@ -266,7 +274,7 @@ nmap <C-c> <C-a>
 set nrformats-=octal 
     
 "Shortcut to enter uuids
-map <Leader>u :py3 import uuid <CR>:%s/UUID/\=py3eval('str(uuid.uuid4())')/<CR>
+map <Leader>u :py3 import uuid <CR>:%s/$UUID/\=py3eval('str(uuid.uuid4())')/<CR>
 
 "Shortcut to copy filename
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
@@ -274,3 +282,22 @@ noremap <silent> <F4> :let @+=expand("%:p")<CR>
 noremap U <C-R>
 " Open grep results / quickfix in new tab
 set switchbuf+=usetab,newtab
+
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+map <Leader>c :SyntasticToggleMode<CR>
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
