@@ -21,6 +21,7 @@ Plugin 'honza/vim-snippets'
 
 " Seamless navigation with tmux
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-runner'
 
 "Custom Operators
 Plugin 'tpope/vim-surround'
@@ -38,8 +39,6 @@ Plugin 'jeetsukumaran/vim-pythonsense'
 " Manage Conda Environments
 " Plugin 'cjrh/vim-conda'
 
-" Good Old Slimux
-Plugin 'epeli/slimux'
 "Nerdtree Filebrowser
 Plugin 'scrooloose/nerdtree'
 
@@ -75,13 +74,7 @@ execute pathogen#infect()
 
 syntax enable
 "Rebind Leader Key
-let mapleader = ","
-
-"Slimux shortcuts
-vmap <Leader>l :SlimuxREPLSendSelection<CR>
-map <Leader>f :SlimuxREPLSendBuffer<CR>
-map <Leader>a :SlimuxShellLast<CR>
-map <Leader>k :SlimuxSendKeysLast<CR>
+let mapleader = " "
 
 "Shortcut for setting wd to current file
 map <Leader>w :lcd %:p:h<CR>
@@ -143,14 +136,6 @@ inoremap <C-n> :nohl<CR>
 " Quick quit command
 noremap <Leader>e :quit<CR>  " Quit current window
 noremap <Leader>E :qa!<CR>   " Quit all windows
-
-
-" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
-" Every unnecessary keystroke that can be saved is good for your health :)
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
 
 
 " easier moving between tabs
@@ -288,9 +273,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 map <Leader>c :SyntasticToggleMode<CR>
@@ -301,3 +287,21 @@ autocmd VimResized * :wincmd =
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
+
+" Settings for vim tmux runner
+let g:VtrStripLeadingWhitespace = 0
+let g:VtrClearEmptyLines = 0
+let g:VtrAppendNewline = 1
+nmap <leader>at :VtrAttachToPane<cr>
+nmap <leader>or :VtrOpenRunner{'orientation':'v'}<cr>
+nmap <leader>cr :VtrClearRunner<cr>
+nmap <leader>kr :VtrKillRunner<cr>
+nmap <leader>fr :VtrFocusRunner<cr>
+" nmap <leader>ar :VtrReattachRunner<cr>
+" nmap <leader>sf vae:VtrSendLinesToRunner<cr>
+vmap <leader>sf ae:VtrSendLinesToRunner<cr>
+nmap <leader>sf vae:VtrSendLinesToRunner<cr>
+vmap <leader>sl :VtrSendLinesToRunner<cr>
+nmap <leader>sl :VtrSendLinesToRunner<cr>
+
+" Turn syntastic passive by default
