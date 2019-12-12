@@ -88,7 +88,7 @@ set number
 
 "Better Copy and Paste
 set pastetoggle=<F2>
-set clipboard=unnamedplus
+set clipboard^=unnamed,unnamedplus
 
 "Enable Mouse
 " set mouse=a
