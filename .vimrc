@@ -13,6 +13,9 @@ Plugin 'VundleVim/Vundle.vim'
 "Git wrapping
 Plugin 'tpope/vim-fugitive'
 
+" Some helpful shortcuts 
+Plugin 'tpope/vim-unimpaired'
+
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 
@@ -53,6 +56,9 @@ Plugin 'chrisbra/csv.vim'
 
 " Syntax Checking
 Plugin 'vim-syntastic/syntastic'
+
+" Latex editing
+Plugin 'lervag/vimtex'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
