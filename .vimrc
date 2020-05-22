@@ -27,6 +27,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'christoomey/vim-tmux-runner'
 
 "Custom Operators
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/ReplaceWithRegister'
@@ -38,6 +39,11 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-line'
 Plugin 'jeetsukumaran/vim-pythonsense'
+Plugin 'heavenshell/vim-pydocstring'
+Plugin 'pixelneo/vim-python-docstring'
+
+" Scala Plugins
+Plugin 'neoclide/coc.nvim'
 
 " Manage Conda Environments
 " Plugin 'cjrh/vim-conda'
@@ -75,8 +81,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-"Include Pathogen
-execute pathogen#infect()
 
 syntax enable
 "Rebind Leader Key
@@ -311,3 +315,14 @@ vmap <leader>sl :VtrSendLinesToRunner<cr>
 nmap <leader>sl :VtrSendLinesToRunner<cr>
 
 " Turn syntastic passive by default
+inoremap § <Esc>
+
+" Copy filepath to clipboard
+nmap <leader>p :let @*=expand("%:p")<CR>
+
+" When you forget sudo
+cmap w!! w !sudo tee > /dev/null %
+
+" Scala Me
+
+" SCALA Metals
