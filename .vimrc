@@ -311,6 +311,8 @@ nmap <leader>fr :VtrFocusRunner<cr>
 " nmap <leader>sf vae:VtrSendLinesToRunner<cr>
 vmap <leader>sf ae:VtrSendLinesToRunner<cr>
 nmap <leader>sf vae:VtrSendLinesToRunner<cr>
+" When you forget sudo
+cmap w!! w !sudo tee > /dev/null %
 vmap <leader>sl :VtrSendLinesToRunner<cr>
 nmap <leader>sl :VtrSendLinesToRunner<cr>
 
@@ -320,9 +322,6 @@ inoremap § <Esc>
 " Copy filepath to clipboard
 nmap <leader>p :let @*=expand("%:p")<CR>
 
-" When you forget sudo
-cmap w!! w !sudo tee > /dev/null %
 
-" Scala Me
-
-" SCALA Metals
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
