@@ -13,3 +13,4 @@ setlocal formatoptions=croql
 
 "Shortcut to run file in python
 nnoremap <Leader>r :exec '!python' shellescape(@%, 1)<cr>
+

@@ -3,89 +3,74 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-Plugin 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 "Git wrapping
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Some helpful shortcuts 
-Plugin 'tpope/vim-unimpaired'
-
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'tpope/vim-unimpaired'
 
 " Seamless navigation with tmux
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'christoomey/vim-tmux-runner'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
 
 "Custom Operators
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'vim-scripts/ReplaceWithRegister'
-Plugin 'christoomey/vim-sort-motion'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'christoomey/vim-sort-motion'
 
 " Custom Text Objects
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kana/vim-textobj-entire'
-Plugin 'kana/vim-textobj-line'
-Plugin 'jeetsukumaran/vim-pythonsense'
-Plugin 'heavenshell/vim-pydocstring'
-Plugin 'pixelneo/vim-python-docstring'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-line'
+Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'pixelneo/vim-python-docstring'
 
-" Scala Plugins
-Plugin 'neoclide/coc.nvim'
-
-" Manage Conda Environments
-" Plugin 'cjrh/vim-conda'
+" Scala Plugs
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 "Nerdtree Filebrowser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Jedi-Vim tags autocomplete etc. for python
-Plugin 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 
 " Change Filname from within
-Plugin 'danro/rename.vim'
+Plug 'danro/rename.vim'
 
-" Filetype Plugin for csv files
-Plugin 'chrisbra/csv.vim'
+" Filetype Plug for csv files
+Plug 'chrisbra/csv.vim'
 
 " Syntax Checking
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Latex editing
-Plugin 'lervag/vimtex'
+Plug 'lervag/vimtex'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" Get them snippets
+Plug 'honza/vim-snippets'
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 
 colorscheme gruvbox
 set background=dark
+set cursorline
+
 syntax enable
+
 "Rebind Leader Key
 let mapleader = " "
 
@@ -146,12 +131,8 @@ vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
 
 
-" Quick quit command
-noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E :qa!<CR>   " Quit all windows
-
-
 " easier moving between tabs
+nnoremap tf :tabfind<Space>
 nnoremap tn :tabnew<Space>
 
 nnoremap <Leader><tab> :tabnext<CR>
@@ -201,21 +182,6 @@ set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
 
-" Settings for python-mode
-" Note: I'm no longer using this. Leave this commented out
-" and uncomment the part about jedi-vim instead
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-" map <Leader>g :call RopeGotoDefinition()<CR>
-" let ropevim_enable_shortcuts = 1
-" let g:pymode_rope_goto_def_newwin = "vnew"
-" let g:pymode_rope_extended_complete = 1
-" let g:pymode_breakpoint = 0
-" let g:pymode_syntax = 1
-" let g:pymode_syntax_builtin_objs = 0
-" let g:pymode_syntax_builtin_funcs = 0
-" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
 " Settings for jedi-vim
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
@@ -227,22 +193,6 @@ let g:jedi#show_call_signatures = 0
 map <Leader>b Oimport pdb; pdb.set_trace()<C-c>
 map <Leader>B :g/import pdb; pdb.set_trace()/d<CR>
 
-" Better navigating through omnicomplete option list
-" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
-set completeopt=longest,menuone
-function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<C-N>"
-        elseif a:action == 'k'
-            return "\<C-P>"
-        endif
-    endif
-    return a:action
-endfunction
-
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 
 " Python folding
@@ -251,9 +201,6 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 set foldenable              " can slow Vim down with some plugins
 set foldlevelstart=99       " can slow Vim down with some plugins
 set foldmethod=syntax       " can slow Vim down with some plugins
-
-"Toggle Tagbar
-nmap <F8> :TagbarToggle<CR>
 
 "Enable relative numbering
 set relativenumber
@@ -281,18 +228,6 @@ noremap U <C-R>
 " Open grep results / quickfix in new tab
 set switchbuf+=usetab,newtab
 
-" Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
-map <Leader>c :SyntasticToggleMode<CR>
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -300,6 +235,12 @@ autocmd VimResized * :wincmd =
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
+
+" Settings for tmux navigatornnoremap <silent> {Left-Mapping} :TmuxNavigateLeft<cr>
+nmap <silent> <C-j> :TmuxNavigateDown<cr>
+nmap <silent> <C-k> :TmuxNavigateUp<cr>
+nmap <silent> <C-l> :TmuxNavigateRight<cr>
+nmap <silent> <C-h> :TmuxNavigateLeft<cr>
 
 " Settings for vim tmux runner
 let g:VtrStripLeadingWhitespace = 0
@@ -328,3 +269,38 @@ nmap <leader>p :let @*=expand("%:p")<CR>
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+
+" Use <C-e> for trigger snippet expand.
+imap <C-e> <Plug>(coc-snippets-expand)
+" GO back through autocompletions with S-Tab
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Confirm with enter
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+inoremap <buffer> <silent><expr> <S-space> coc#refresh()
+let g:coc_snippet_next = '<tab>'
+
+
+" GoTo code navigation.
+nmap <buffer> <leader>gd <Plug>(coc-definition)
+nmap <buffer> <leader>gy <Plug>(coc-type-definition)
+nmap <buffer> <leader>gi <Plug>(coc-implementation)
+nmap <buffer> <leader>gr <Plug>(coc-references)
+nnoremap <buffer> <leader>cr :CocRestart
+
+set statusline^=%{coc#status()}
+
+nmap <leader>cl :CocCommand python.setLinter<CR>
+
+" Enable find command 
+set path+=**
