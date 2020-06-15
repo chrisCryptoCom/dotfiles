@@ -1,6 +1,12 @@
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Set java home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
+
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
+export PYTHONPATH=$PYTHONPATH:/Users/christian/PycharmProjects/igp_2_0
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -67,3 +73,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# For Nand2Tetris
+export PATH=$PATH:~/OnlineKurse/nand2tetris/tools
+alias hs="sh ~/OnlineKurse/nand2tetris/tools/HardwareSimulator.sh"
+alias ce="sh ~/OnlineKurse/nand2tetris/tools/CPUEmulator.sh"
+alias asm="sh ~/OnlineKurse/nand2tetris/tools/Assembler.sh"
