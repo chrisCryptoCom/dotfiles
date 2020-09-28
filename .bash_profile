@@ -1,5 +1,6 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+
 # Set java home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home
 
@@ -78,3 +79,11 @@ export PATH=$PATH:~/OnlineKurse/nand2tetris/tools
 alias hs="sh ~/OnlineKurse/nand2tetris/tools/HardwareSimulator.sh"
 alias ce="sh ~/OnlineKurse/nand2tetris/tools/CPUEmulator.sh"
 alias asm="sh ~/OnlineKurse/nand2tetris/tools/Assembler.sh"
+alias vme="sh ~/OnlineKurse/nand2tetris/tools/VMEmulator.sh"
+alias jc="sh ~/OnlineKurse/nand2tetris/tools/JackCompiler.sh"
+
+# Beautiful gitgraph
+alias gitgraph="git log --oneline --decorate --all --graph"
+
+# Share command history across tmux sessions
+export PROMPT_COMMAND="history -a; history -n"

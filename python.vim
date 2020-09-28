@@ -11,6 +11,3 @@ setlocal formatoptions=croql
 "Set line length marker to 80
 :setlocal colorcolumn=80
 
-"Shortcut to run file in python
-nnoremap <Leader>r :exec '!python' shellescape(@%, 1)<cr>
-
