@@ -78,6 +78,10 @@ Plug 'bronson/vim-visual-star-search'
 " Search and replace project wide
 Plug 'mhinz/vim-grepper'
 
+" Highlight unique character for each word to support f, t navigation
+Plug 'unblevable/quick-scope'
+
+
 
 " All of your Plugs must be added before the following line
 call plug#end()            " required
@@ -458,3 +462,15 @@ xmap <Leader>R
     \ gvgr
     \ :cfdo %s/<C-r>s//g \| update
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" .............................................................................
+" unblevable/quick-scope
+" .............................................................................
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=underline
+
+let g:qs_max_chars=150
