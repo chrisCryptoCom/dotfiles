@@ -87,3 +87,6 @@ alias gitgraph="git log --oneline --decorate --all --graph"
 
 # Share command history across tmux sessions
 export PROMPT_COMMAND="history -a; history -n"
+
+# Open fzf output in nvim
+alias fv="fzf | xargs nvim"
