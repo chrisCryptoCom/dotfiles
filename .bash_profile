@@ -90,5 +90,5 @@ export PROMPT_COMMAND="history -a; history -n"
 
 # Open fzf output in nvim
 alias fv="fzf | xargs nvim"
-alias chrome="open -a 'google chrome' index.html"
+alias chrome="open -a 'google chrome'"
 

@@ -81,6 +81,11 @@ Plug 'mhinz/vim-grepper'
 " Highlight unique character for each word to support f, t navigation
 Plug 'unblevable/quick-scope'
 
+" Vim vue filetype plugin
+Plug 'posva/vim-vue'
+
+Plug 'alvan/vim-closetag'
+
 
 
 " All of your Plugs must be added before the following line
@@ -475,5 +480,68 @@ highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=und
 
 let g:qs_max_chars=150
 
-" Bring back the excape key in nvim terminal
-" :tnoremap <Esc> <C-\><C-n>
+" Coc configuration
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-eslint', 
+  \ 'coc-tsserver', 
+  \ 'coc-python', 
+  \ 'coc-prettier', 
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-json', 
+  \ 'coc-vetur',
+  \ ]
+
+
+" Closetag config
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+
+"Add prettier command
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+"Set pyx version
+set pyxversion=3
+let g:python3_host_prog = '/usr/local/bin/python3'
+
