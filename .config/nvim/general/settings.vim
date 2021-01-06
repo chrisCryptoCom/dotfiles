@@ -60,3 +60,26 @@ set expandtab
 "Ignore case when searching
 set ignorecase
 set smartcase
+
+"Enable relative numbering
+set relativenumber
+
+"Insert mode very slow
+set noswapfile
+
+"Switch off octal numbers"
+set nrformats-=octal 
+
+" Open grep results / quickfix in new tab
+set switchbuf+=usetab,newtab
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" Enable find command 
+set path+=**
+
+"Set pyx version
+set pyxversion=3
+let g:python3_host_prog = '/usr/local/bin/python3'
+

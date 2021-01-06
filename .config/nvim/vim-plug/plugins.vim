@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     "Git wrapping
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 
     " Some helpful shortcuts 
     Plug 'tpope/vim-unimpaired'
@@ -94,7 +95,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()            " required
 filetype plugin indent on    " required
 
-
+PlugInstall --sync | q
 " Automatically install missing plugins on startup
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
