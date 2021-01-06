@@ -1,0 +1,6 @@
+{
+    "python.jediEnabled": true,
+    "python.linting.pylintEnabled": false,
+    "java_home": "/Library/Java/JavaVirtualMachines/jdk-14.0.1.jdk/Contents/Home",
+    "suggest.autoTrigger": "none"
+}
