@@ -1,124 +1,23 @@
 function SourceFile(relativePath)
     let basePath = expand('%:p:h')
-    let fullPath = basePath . a:relativePath
+    let fullPath = basePath . '/' . a:relativePath
     exec 'source ' . fullPath
 endfunction
 
 " let plugConfig = expand('%:p:h') . '/vim-plug/plugins.vim'
 let configFiles = [
-    \'/vim-plug/plugins.vim',
+    \'vim-plug/plugins.vim',
+    \'general/settings.vim',
+    \'general/shortcuts.vim',
     \]
 
 for f in configFiles
     call SourceFile(f)
 endfor
 
-" call SourceFile()
-" exec 'source ' . plugConfig
-
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-colorscheme gruvbox
-set background=dark
-set cursorline
-
-syntax enable
-
-"Rebind Leader Key
-let mapleader = " "
-
-"Shortcut for setting wd to current file
-map <Leader>w :lcd %:p:h<CR>
-
-"Enable language specific settings
-filetype plugin indent on
-
-"Set line numbers on 
-set number
-
-
-"Better Copy and Paste
-set pastetoggle=<F2>
-set clipboard^=unnamed,unnamedplus
-
-"Enable Mouse
-" set mouse=a
-set bs=2
-
-
-"Quicksave Command
-noremap <C-Z> :update<CR>
-vnoremap <C-Z> <C-C>:update<CR>
-inoremap <C-Z> <C-O>:update<CR>
-
-"Enable highlight search
-set hls is
-
-"Quit Command
-noremap <C-Q> :quit<CR>
-
-"Keep Clipboard on exit
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
-
-
-" Search down into subfolders
-" Provides tab-completion for all file-related tasks
-" set path+=**
-
-"Dislpay all matching files when tab complete
-set wildmenu
-
-"Create tags file for tag jumping
-command! MakeTags !ctags -R . 
-
 "Show hidden files in NERDTree
 let NERDTreeShowHidden=1
 nmap <F3> :NERDTreeToggle<CR>
-
-" Martin Brochhaus https://www.youtube.com/watch?v=YhqsjUUHj6g
-" Bind nohl
-" Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
-
-
-" easier moving between tabs
-nnoremap tf :tabfind<Space>
-nnoremap tn :tabnew<Space>
-
-nnoremap <Leader><tab> :tabnext<CR>
-nnoremap <s-tab> :tabprev<CR>
-
-nnoremap th :tabfirst<CR>
-nnoremap tl :tablast<CR>
-
-
-" easier moving of code blocks
-" Try to go into visual mode (v), thenselect several lines of code here and
-" then press ``>`` several times.
-vnoremap < <gv  " better indentation
-vnoremap > >gv  " better indentation
-
-"Undo history
-set history=700
-set undolevels=700
-
-"Tab settings
-set tabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
-
-"Ignore case when searching
-set ignorecase
-set smartcase
-
 " ============================================================================
 " Python IDE Setup
 " ============================================================================
@@ -173,7 +72,7 @@ set noswapfile
 set nrformats-=octal 
     
 "Shortcut to enter uuids
-map <Leader>u :py3 import uuid <CR>:%s/b8f965b4-1dca-4920-98c0-17991a6c4a2b/\=py3eval('str(uuid.uuid4())')/<CR>
+map <Leader>u :py3 import uuid <CR>:%s/$UUID/\=py3eval('str(uuid.uuid4())')/<CR>
 
 "Shortcut to copy filename
 noremap <silent> <F4> :let @+=expand("%:p")<CR>
